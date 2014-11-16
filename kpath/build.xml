@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="kpath" default="all" basedir=".">
+    <target name="init">
+
+        <mkdir dir="build/classes"/>
+
+        <mkdir dir="dist" />
+
+    </target>
+    <path id="compile.classpath">
+        <fileset dir="lib">
+
+            <include name="*.jar"/>
+            
+
+        </fileset>
+        <fileset dir="lib/DEV">
+            <include name="*.jar"/>
+        </fileset>
+        
+
+    </path>
+    <target name="compile" depends="init" >
+
+        <javac destdir="build/classes" debug="true" srcdir="src">
+
+            <classpath refid="compile.classpath"/>
+
+        </javac>
+
+    </target>
+    
+    <target name="war" depends="compile">
+
+        <war destfile="dist/kpath.war" webxml="web/WEB-INF/web.xml">
+
+            <fileset dir="web"/>
+
+            <lib dir="lib"/>
+
+            <classes dir="build/classes"/>
+
+        </war>
+
+    </target>
+    <target name="deploy"  depends="war" >
+        <copy file="dist/kpath.war" tofile="c:/java/apache-tomcat-7.0.42/webapps/kpath.war"/>
+    </target>
+    
+     
+
+    
+    
+</project>
