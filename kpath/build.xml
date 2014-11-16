@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="kpath" default="all" basedir=".">
+<project name="kpath" default="deploy" basedir=".">
     <target name="init">
 
         <mkdir dir="build/classes"/>
@@ -8,15 +8,19 @@
 
     </target>
     <path id="compile.classpath">
-        <fileset dir="lib">
+        <fileset dir="lib/gson">
 
             <include name="*.jar"/>
             
 
         </fileset>
-        <fileset dir="lib/DEV">
+        <fileset dir="lib/spring">
             <include name="*.jar"/>
         </fileset>
+    	<fileset dir="lib/commonsLogging">
+    	            <include name="*.jar"/>
+    	</fileset>
+    	        
         
 
     </path>
@@ -44,7 +48,7 @@
 
     </target>
     <target name="deploy"  depends="war" >
-        <copy file="dist/kpath.war" tofile="c:/java/apache-tomcat-7.0.42/webapps/kpath.war"/>
+        <copy file="dist/kpath.war" tofile="c:/java/apache-tomcat-7.0.57/webapps/kpath.war"/>
     </target>
     
      
