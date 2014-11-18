@@ -1,7 +1,42 @@
 <html>
+<head>
+
 <Title>Hello</Title>
+<script src="js/jquery-1.11.1.min.js" > </script>
+
+<script>
+
+	function getData() {
+		$('#div1').html("New World");
+		var formData = {
+				'name' : $('#inputName').val()
+		};
+
+		$.ajax({
+			type : 'post',
+			url : '/kpath/servlet/site',
+			data : formData,
+			success : function(data) {
+				var parsed = JSON.parse(data);
+				$('#div1').html("name: " + parsed.name);
+			},
+			error : function(data) {
+				$('#div1').html("Error");
+			}
+		});
+
+	}
+</script>
+</head>
 <body>
 <h3> Mochi Mochi</h3>
+<br/>
+<input type = "text" id="inputName"/>
+<button value="Click Me" onclick="getData()" >Click Me</button>
+
+<br/><hr/>
+<div id="div1"></div>
+<br/><hr/>
 
 </body>
 </html>
